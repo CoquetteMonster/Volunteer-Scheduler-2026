@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Volunteer Scheduler (Cloud)</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+<style>
+body { font-family: Arial; background:#f5f7fa; padding:20px; }
+.container { max-width:900px; margin:auto; background:white; padding:20px; border-radius:10px; }
+input,button{ padding:8px; margin:5px 0; width:100%; }
+button{ background:#4CAF50; color:white; border:none; cursor:pointer; }
+button:hover{ background:#45a049; }
+#output{ background:#eef; padding:10px; height:180px; overflow:auto; white-space:pre-line; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Volunteer Scheduler (Cloud Saving)</h2>
+
+<label>Upload Volunteers CSV:</label>
+<input type="file" id="csvFile" accept=".csv">
+
+<label>Event Name:</label>
+<input type="text" id="eventName">
+
+<label>Start Time:</label>
+<input type="number" id="startTime">
+
+<label>Duration:</label>
+<input type="number" id="duration">
+
+<label>Volunteers Needed:</label>
+<input type="number" id="required">
+
+<button onclick="allocate()">Allocate Volunteers</button>
+<button onclick="showGantt()">Show Gantt Chart</button>
+
+<h3>Output</h3>
+<div id="output"></div>
+
+<canvas id="chart"></canvas>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore, doc, setDoc, getDoc
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "volunteer-scheduler-2026.firebaseapp.com",
+  projectId: "volunteer-scheduler-2026",
+  storageBucket: "volunteer-scheduler-2026.appspot.com",
+  messagingSenderId: "633471656395",
+  appId: "1:633471656395:web:98eeb940e94b4fd4eb164e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.db = db;
+
+</script>
+
+
+</body>
+
+</html>
